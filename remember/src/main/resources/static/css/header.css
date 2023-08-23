@@ -2,11 +2,10 @@
 
 header {
 	min-width: 1240px;
-	width: 1240px;
-	margin: 0 auto;
 	height: 80px;
 	display: flex;
 	align-items: center;
+	border-bottom: 2px solid var(--main);
 	padding-top: 10px;
 	padding-bottom: 5px;
 }
@@ -18,6 +17,7 @@ header {
 
 .logo img {
 	width: 200px;
+	margin-left: 50px;
 }
 
 .headerlist {
@@ -40,6 +40,7 @@ header {
 	display: flex;
 	justify-content: flex-end;
 	gap : 50px;
+	padding-right: 50px;
 }
 
 .activePage {

@@ -2,33 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.DetailDAO">
-	<select id="likeCount" parameterType="int" resultType="string">
-		SELECT count
+	<select id="likeCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
 		FROM `like`
 		WHERE mng_no=#{mng_no};
 	</select>
 	
 	<insert id="insertLike" parameterType="map">
-		INSERT INTO `like`(mng_no, user_id, count)
-		VALUES (#{mng_no}, #{id}, 1)
+		INSERT INTO `like`(mng_no, user_id)
+		VALUES (#{mng_no}, #{id})
 	</insert>
 	
-	<select id="selectLike" parameterType="map" resultType="int">
-		SELECT count(*) FROM `like`
-		WHERE mng_no=#{mng_no}
-		AND user_id=#{id}
-	</select>
-	
-	<update id="updateLike" parameterType="map">
-		UPDATE `like`
-		SET count = count + 1
-		WHERE mng_no=#{mng_no}
-		AND user_id=#{id}
-	</update>
-	
 	<select id="selectComment" parameterType="int" resultType="hashmap">
-		SELECT *,
-			(SELECT count(*) FROM comment WHERE mng_no=#{mng_no}) AS 'totalCount',
+		SELECT *, (SELECT count(*) FROM comment) AS 'totalCount',
 			u.name
 		FROM comment c
 		LEFT JOIN user u ON c.user_id = u.user_id

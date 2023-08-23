@@ -1,7 +1,6 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +25,15 @@ public class SignController{
 	@Autowired
 	@Qualifier("SignService")
 	SignService Ss;
+	
 	//로그인구현	
 	@RequestMapping("/Login")
 	public String loginprocess(String id, String password, HttpSession session) {
 		UserDTO my_info = Ss.MyInfo(id);
-		Map<String, Object> map = new HashMap<>();
 		if(my_info != null && my_info.getPassword().equals(password)) {
 				session.setAttribute("user_id",my_info.getUser_id());
 				session.setAttribute("id", my_info.getId());
 				
-				map.put("user_id", my_info.getUser_id());				
 				return "redirect:/" ;
 			}
 		else {
@@ -57,12 +55,26 @@ public class SignController{
 		mv.setViewName("Signup");	
 		return mv;
 	}
+	
+	
+	@PostMapping("/signup")
+	public String signup(UserDTO UserDTO) {
+		
+		String password = UserDTO.getPassword();
+		
+		if(Ss.insertMember(UserDTO)>0) {
+			return "redirect:/Signin";
+		}
+		else return "Signup";
+	}
+	
 	@RequestMapping("/Signin")
 	public ModelAndView signin() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("Signin");	
 		return mv;
 	}
+	
 	@RequestMapping("/alert")
 	public ModelAndView alert() {
 		ModelAndView mv = new ModelAndView();
@@ -167,4 +179,3 @@ public class SignController{
 		
 	
 }
-	

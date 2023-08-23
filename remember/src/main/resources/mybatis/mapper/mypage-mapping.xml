@@ -23,23 +23,12 @@
 		DELETE FROM comment WHERE user_id = #{user_id};
 	</delete>
 	
-	<select id="getLike" parameterType="hashmap" resultType="likeDto">
-		SELECT * FROM `like` WHERE user_id = #{user_id}
-		ORDER BY count DESC
-		LIMIT #{limitindex} , #{limitcount};
+	<select id="getLike" parameterType="String" resultType="likeDto">
+		SELECT * FROM `like` WHERE user_id = #{user_id};
 	</select>
 	
-	<select id="getLikeCount" resultType="int" parameterType="string">
-		SELECT COUNT(*) FROM `like` WHERE user_id = #{user_id};
+	<select id="getComment" parameterType="String" resultType="commentDto">
+		SELECT * FROM comment WHERE user_id = #{user_id};
 	</select>
 	
-	<select id="getComment" parameterType="hashmap" resultType="commentDto">
-		SELECT * FROM comment WHERE user_id = #{user_id}
-		ORDER BY created_at DESC
-		LIMIT #{limitindex} , #{limitcount};
-	</select>
-	
-	<select id="getCommentCount" resultType="int" parameterType="string">
-		SELECT COUNT(*) FROM comment WHERE user_id = #{user_id};
-	</select>
 </mapper>

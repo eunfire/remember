@@ -284,7 +284,7 @@ async function getListFor(list) {
 		await $.ajax({
 			url: "https://e-gonghun.mpva.go.kr/opnAPI/publicReportList.do"
 				+ "?nPageIndex=1&nCountPerPage=1&type=JSON"
-				+ "&mngNo=" + list[i],
+				+ "&mngNo=" + list[i].mng_no,
 			type: "get",
 			dataType: "json",
 			success: function(data) {
@@ -295,21 +295,10 @@ async function getListFor(list) {
 				
 				// 사진 없으면
 				noProfile();
+				
+				// 존경, 댓글 출력
+				likeComment(list[i].mng_no, list[i].like, list[i].comment);
 			}	// success end
 		});	// ajax end
 	}	// for end
-	
-	// DB 조회
-	$.ajax({
-		url: "/list/DB",
-		data: {mngNoList: list},
-		type: "post",
-		dataType: "json",
-		success: function(data) {
-			for (let i = 0; i < data.length; i++) {
-				// 존경, 댓글 출력
-				likeComment(data[i].mng_no, data[i].like, data[i].comment);
-			}	// for end
-		}	// success end
-	});	// DB 조회 ajax end
 }	// getListFor end

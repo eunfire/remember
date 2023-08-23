@@ -3,27 +3,23 @@ function pagination(page, totalCount) {
   const lastPage = Math.ceil(totalCount / pageLimit);
   var startPage = parseInt((page - 1) / pageLimit) * pageLimit + 1;
 
-  let pagination = document.getElementById('pagination');
-
-  if(totalCount != 0) {
-	  pagination.innerHTML = `
-		${startPage <= 5
-		  ? `<div class="prev">` 
-		  : `<div class="prev" id="prevActive">`}
-		  <div class="prevArrow"></div>
-		</div>
-		${new Array(5).fill(1).map((_, index) =>
-	      index + startPage <= lastPage
-	        ? `<div class="pageNumber${index + startPage == page ? ' active' : ''}" id="${index + startPage}">${`${index + startPage}`}</div>`
-	        : ''
-	    ).join('')}
-		${startPage + 5 <= lastPage
-	      ? `<div class="next" id="nextActive">`
-	      : `<div class="next">`}
-		  <div class="nextArrow"></div>
-		</div>
-	 `;
-  }
+  document.getElementById('pagination').innerHTML = `
+	${startPage <= 10
+	  ? `<div class="prev">` 
+	  : `<div class="prev" id="prevActive">`}
+	  <div class="prevArrow"></div>
+	</div>
+	${new Array(10).fill(1).map((_, index) =>
+      index + startPage <= lastPage
+        ? `<div class="pageNumber${index + startPage == page ? ' active' : ''}" id="${index + startPage}">${`${index + startPage}`}</div>`
+        : ''
+    ).join('')}
+	${startPage + 10 <= lastPage
+      ? `<div class="next" id="nextActive">`
+      : `<div class="next">`}
+	  <div class="nextArrow"></div>
+	</div>
+	`;
 
   const pageNums = document.querySelectorAll('.pageNumber');
 
@@ -47,14 +43,14 @@ function pagination(page, totalCount) {
 
   if (prev) {
     prev.addEventListener('click', () => {
-      page = Math.floor((page - 1) / 5) * 5;
+      page = Math.floor(page / 10 - 1) * 10 + 1;
 
       commentList(page)
     });
   }
   if (next) {
     next.addEventListener('click', () => {
-      page = Math.ceil(page / 5) * 5 + 1;
+      page = Math.ceil(page / 10) * 10 + 1;
 
       commentList(page)
     });

@@ -4,10 +4,10 @@
   
   <mapper namespace="dao.SignDAO">
   	<insert id="insertMember" parameterType="UserDTO">
-  		INSERT INTO user(user_id,name,phone,email,password) value(#{user_id},#{name},#{phone},#{email},#{password})
+  		INSERT INTO user(id,name,email,password) value(#{id},#{name},#{email},#{password})
   	</insert>
   	<select id="dupliIDcheck" parameterType="String" resultType="int">
-		SELECT COUNT(user_id) FROM user where user_id= #{user_id}
+		SELECT COUNT(id) FROM user where id= #{id}
 	</select>
 	<select id="dupliEmailcheck" parameterType="String" resultType="int">
 		SELECT COUNT(email) FROM user where email= #{email}

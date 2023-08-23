@@ -3,47 +3,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.ListDAO">
 	<!-- List select -->
-	<!-- 존경해요 개수 -->
-	<select id="getListLike" parameterType="int" resultType="Integer">
-		select sum(count) from `like`
-		where mng_no = #{mng_no}
+	<!-- 각 독립유공자 별 존경해요, 댓글 개수 (default) -->
+	<select id="listLikeComment" parameterType="listDto" resultType="listDto">
+		select c.mng_no as mng_no, count(c.contents) as `comment`, sum(l.count) as `like`
+		from `comment` as c 
+		left join `like` as l
+		on c.mng_no = l.mng_no where
+		(<foreach collection="mngNoList" item="mng" separator=" or ">c.mng_no = #{mng}</foreach>)
+		group by mng_no
 	</select>
 	
-	<!-- 댓글 개수 -->
-	<select id="getListComment" parameterType="int" resultType="Integer">
-		select count(*) from `comment`
-		where mng_no = #{mng_no}
-	</select>
-	
-	<!-- 정렬 -->
-	<select id="sortList" parameterType="listDto" resultType="Integer">
-		select mng_no from `${sort}`
-		group by mng_no order by
-		<choose>
-			<when test="sort == 'like'">
-				sum(count) desc, mng_no
-			</when>
-			<when test="sort == 'comment'">
-				count(*) desc, mng_no
-			</when>
-		</choose>
+	<!-- 각 독립유공자 별 존경해요, 댓글 개수 (sort) -->
+	<select id="listSort" parameterType="listDto" resultType="listDto">
+		select c.mng_no as mng_no, count(c.contents) as `comment`, sum(l.count) as `like`
+		from `comment` as c 
+		left join `like` as l
+		on c.mng_no = l.mng_no
+		group by mng_no
+		order by `${sort}` is null, `${sort}` desc, mng_no
 		limit #{start}, #{end}
 	</select>
-	
-	<!-- 정렬 개수 -->
-	<select id="sortListCount" parameterType="listDto" resultType="Integer">
+	<select id="listSortCount" resultType="int">
 		select count(*)
 		from (
-			select mng_no from `${sort}`
-			group by mng_no order by
-			<choose>
-				<when test="sort == 'like'">
-					sum(count) desc
-				</when>
-				<when test="sort == 'comment'">
-					count(*)
-				</when>
-			</choose>
+			select c.mng_no
+		    from `comment` as c
+		    left join `like` as l
+		    on c.mng_no = l.mng_no
+		    group by c.mng_no
 		) as subquery;
 	</select>
 </mapper>

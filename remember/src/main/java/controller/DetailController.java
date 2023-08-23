@@ -20,12 +20,7 @@ public class DetailController {
 
 	@RequestMapping("/detail")
 	public String detail(Model model, HttpSession session, @RequestParam("mng_no") int mng_no) {
-		List<String> list = service.likeCount(mng_no);
-		int likeCount = 0;
-		
-		for(String i : list) {
-			likeCount += Integer.parseInt(i);
-		}
+		int likeCount = service.likeCount(mng_no);
 
 		model.addAttribute("likeCount", likeCount);
 
@@ -35,34 +30,23 @@ public class DetailController {
 	@ResponseBody
 	@RequestMapping("/api/like")
 	public int inserLike(HttpSession session, int mng_no) {
-		List<String> list = service.likeCount(mng_no);
 		int likeCount = 0;
-		
+
 		if (session.getAttribute("user_id") != null) {
 			String user_id = session.getAttribute("user_id").toString();
-			int check = service.selectLike(mng_no, user_id);
 
-			if (check == 1) {
-				service.updateLike(mng_no, user_id);
-			} else {
-				service.insertLike(mng_no, user_id);
-			}
-
-			list = service.likeCount(mng_no);
+			service.insertLike(mng_no, user_id);
+			likeCount = service.likeCount(mng_no);
 		}
 
-		for(String i : list) {
-			likeCount += Integer.parseInt(i);
-		}
-		
 		return likeCount;
-
 	}
 
 	@ResponseBody
 	@RequestMapping("/api/commentList")
 	public List<CommentDTO> listComment(int mng_no, int page) {
 		int pages = (page - 1) * 5;
+		
 		List<CommentDTO> commentList = service.selectComment(mng_no, pages);
 		
 		return commentList;

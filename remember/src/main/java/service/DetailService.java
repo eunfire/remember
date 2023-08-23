@@ -13,17 +13,11 @@ public class DetailService {
 	@Autowired
 	DetailDAO dao;
 	
-	public List<String> likeCount(int mng_no) {
+	public int likeCount(int mng_no) {
 		return dao.likeCount(mng_no); 
 	}
 	public void insertLike(int mng_no, String id) {
 		dao.insertLike(mng_no, id);
-	}
-	public int selectLike(int mng_no, String id) {
-		return dao.selectLike(mng_no, id);
-	}
-	public void updateLike(int mng_no, String id) {
-		dao.updateLike(mng_no, id);
 	}
 	public List<CommentDTO> selectComment(int mng_no, int page){
 		return dao.selectComment(mng_no, page);

@@ -88,7 +88,7 @@
 			getLikeList(${ mngNoList });
 		});	// document end
 	</script>
-<title>존경해요</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -113,39 +113,8 @@
 				
 				<div class="pageNums"></div><h1 id="activePage" style="display: none;"></h1>
 			</div>
-			
-			<div class="page_number">
-				<c:choose>
-					<c:when test="${currentpPage == 1}">
-						<a class="prev disabled" href="/mylike?page=1" tabindex="-1"
-							aria-disabled="true"><</a>
-					</c:when>
-					<c:otherwise>
-						<a class="prev" href="/mylike?page=${currentpPage - 1}"><</a>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i" begin="${startpage}" end="${endpage}">
-					<c:choose>
-						<c:when test="${i == currentpPage}">
-							<a class="page active" href="/mylike?page=${i}">${i}</a>
-						</c:when>
-						<c:otherwise>
-							<a class="page" href="/mylike?page=${i}">${i}</a>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${totalPage != currentpPage}">
-						<a class="next" href="/mylike?page=${currentpPage + 1}">></a>
-					</c:when>
-					<c:otherwise>
-						<a class="next disabled" href="/mylike?page=${endpage + 1}">></a>
-					</c:otherwise>
-				</c:choose>
-			</div>
 		</div>
 	</div>
-	
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

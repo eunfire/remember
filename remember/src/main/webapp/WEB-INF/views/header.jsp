@@ -34,10 +34,15 @@
 	
 	<div class="headerProfile">
 		<c:choose>
+<<<<<<< HEAD
 			<c:when test="${empty user_id}">
 				<a href="/Signin"><img alt="로그인" src="/image/login.png"></a>
+=======
+			<c:when test="${empty user}">
+				<a href="#"><img alt="로그인" src="/image/login.png"></a>
+>>>>>>> branch 'yb' of https://github.com/eunfire/remember.git
 			</c:when>
-			<c:when test="${not empty user_id}">
+			<c:when test="${not empty user}">
 				<a href="/myinfo"><img alt="마이페이지" src="/image/user.png"></a>
 				<a href="#" onclick="logout()"><img alt="로그아웃" src="/image/logout.png"></a>
 			</c:when>

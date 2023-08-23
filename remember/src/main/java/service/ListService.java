@@ -13,36 +13,17 @@ public class ListService {
 	@Autowired
 	ListDAO dao;
 	
-	/// List select	
-	// 존경해요 개수
-	public Integer getListLike(int mng_no) {
-		Integer result = dao.getListLike(mng_no);
-		if (result == null) {
-			return 0;
-		}
-		return result;
+	/// List select
+	// 각 독립유공자 별 존경해요, 댓글 개수
+	public List<ListDTO> listLikeComment(ListDTO dto) {
+		return dao.listLikeComment(dto);
 	}
 	
-	// 댓글 개수
-	public Integer getListComment(int mng_no) {
-		Integer result = dao.getListComment(mng_no);
-		if (result == null) {
-			return 0;
-		}
-		return result;
+	// 각 독립유공자 별 존경해요, 댓글 개수 (sort)
+	public List<ListDTO> listSort(ListDTO dto) {
+		return dao.listSort(dto);
 	}
-	
-	// 정렬
-	public List<Integer> sortList(ListDTO dto) {
-		return dao.sortList(dto);
-	}
-	
-	// 정렬 개수
-	public Integer sortListCount(ListDTO dto) {
-		Integer result = dao.sortListCount(dto);
-		if (result == null) {
-			return 0;
-		}
-		return result;
+	public int listSortCount() {
+		return dao.listSortCount();
 	}
 }

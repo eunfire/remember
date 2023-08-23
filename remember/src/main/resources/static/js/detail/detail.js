@@ -32,7 +32,7 @@ $(document).ready(function () {
     sex.innerText = items.SEX == "여" ? "여성" : "남성";
     birthday.innerText = items.BIRTHDAY;
     lastday.innerText = items.LASTDAY;
-    register.innerHTML = `${items.REGISTER_MID_DIV} ${items.REGISTER_SMALL_DIV.replace(/([一-龥]+)/g, "<span class='hanja'>$1</span>")}`;
+    register.innerHTML = `${items.REGISTER_MID_DIV} <span class="hanja">${items.REGISTER_SMALL_DIV}</span>`;
     workout_affil.innerText = items.WORKOUT_AFFIL;
     judge_year.innerText = items.JUDGE_YEAR;
     hunkuk.innerText = items.HUNKUK;
@@ -46,7 +46,10 @@ $(document).ready(function () {
     }.svg';" />`;
 
     let article = document.querySelectorAll("article")[0];
-    article.innerHTML = `${items.ACHIVEMENT_KO.replace(/([一-龥]+)/g, "<span class='hanja'>$1</span>")}`;
+    article.innerHTML = `${items.ACHIVEMENT_KO.replaceAll(
+      "(",
+      "<span class='hanja'>("
+    ).replaceAll(")", ")</span>")}`;
     
     
     let errorLink = document.getElementsByClassName("errorWrap")[0];
@@ -75,11 +78,11 @@ $(document).ready(function () {
 
     if (items != undefined) {
       name.innerHTML += `
-		<div class="medal">
-			<object data="/image/medal.svg" alt="메달"></object>
-			<p>이달의 독립운동가</p>
-		</div>
-		`;
+			<div class="medal">
+				<object data="/image/medal.svg" alt="메달"></object>
+				<p>이달의 독립운동가</p>
+			</div>
+			`;
 
       let article = document.querySelectorAll("article")[1];
       article.innerHTML = `${items.ACHIVEMENT.replace(" 1. ", "<br /><br />1. ")
@@ -94,8 +97,7 @@ $(document).ready(function () {
         .replace(" 목차 1.1.", "<br /><br /><div class='mokcha'>목차</div>1.")
         .replace(" 2.2.", "<br />2.")
         .replace(" 3.3.", "<br />3.")
-        .replace(" 4.4.", "<br />4.")
-        .replace(/([一-龥]+)/g, "<span class='hanja'>$1</span>")}`;
+        .replace(" 4.4.", "<br />4.")}`;
     } else {
       let li = document.getElementById("hide");
       li.style.display = "none";

@@ -1,6 +1,5 @@
 package service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +34,12 @@ public class MypageServiceImpl implements MypageService {
 	public int deleteComment(String user_id) {
 		return mypagedao.deleteComment(user_id);
 	}
-	
-	public List<LikeDTO> getLike(HashMap<String, Object> llistmap) {
-		return mypagedao.getLike(llistmap);
+
+	public List<LikeDTO> getLike(String user_id) {
+		return mypagedao.getLike(user_id);
 	}
 	
-	public int getLikeCount(String user_id) {
-		return mypagedao.getLikeCount(user_id);
-	}
-	
-	public List<CommentDTO> getComment(HashMap<String, Object> cmtlistmap) {
-		return mypagedao.getComment(cmtlistmap);
-	}
-	
-	public int getCommentCount(String user_id) {
-		return mypagedao.getCommentCount(user_id);
+	public List<CommentDTO> getComment(String user_id) {
+		return mypagedao.getComment(user_id);
 	}
 }
