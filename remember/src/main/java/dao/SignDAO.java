@@ -10,7 +10,7 @@ public interface SignDAO {
 	public int dupliFindEmailcheck(String user_id,String email);
 	UserDTO findByUserId(String userId);
     UserDTO findByEmailAndPassword(String email, String password);
-	UserDTO MyInfo(String user_id);
+	UserDTO MyInfo(String id);
 	int updatemember(UserDTO userDTO);
 	int Findpwupdate(UserDTO userDTO);
 	

@@ -31,8 +31,8 @@ public class SignServiceimple implements SignService{
 	}
 	
 	@Override
-	public UserDTO MyInfo(String user_id) {
-		return dao.MyInfo(user_id);
+	public UserDTO MyInfo(String id) {
+		return dao.MyInfo(id);
 	}
 	@Override
 	public int updatemember(UserDTO UserDTO) {

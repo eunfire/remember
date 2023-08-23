@@ -4,15 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/Signin.css" />
+<link href="/image/icon.png" rel="icon"> 
 <title>기억하길</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-
+<div class="logo_container">
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <image x="0" y="0" width="1" height="1" xlink:href="image/logo.png" preserveAspectRatio="xMidYMid meet" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#pattern0)" />
+    </svg>
+</div>
+	
 	<form  method="post" name = "loginform" action="/Login" id="login_form">
         <input type="text" 
         class = "id-pw" 
-        name ="user_id" 
+        name ="id" 
         id = "id" 
         alt="id입력"
         placeholder="아이디 입력" 

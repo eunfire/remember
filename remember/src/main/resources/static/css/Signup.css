@@ -1,0 +1,88 @@
+@charset "UTF-8";
+.logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh; /* viewport height */
+}
+body{
+	width:1240px;
+	background: #D7D1C7;
+}
+
+
+form {
+	    width: 800px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
+    
+}
+input {
+	border : 1px solid #E3E2E0;
+	border-radius: 30px;
+	text-align: center;
+	vertical-align: middle;
+	width: 500px;
+    height:60px;
+    font-size : 20px;
+    margin-top:14px;
+}
+input[type=checkbox] {
+position: relative;
+transform : scale(0.37);
+margin-top:-7px;
+}
+#id{
+	margin-top:0px;
+}
+#result-2{
+	margin-top:5px;
+}
+.pw-check{
+	
+	margin-left:-230px;
+}
+#mark{
+	margin-left:-480px;
+}
+#mark1{
+	margin-left:-480px;
+}
+#num{
+	width:300px;
+}
+#address-1{
+	width:370px;
+	background:white;
+}
+#address-2{
+	width:130px;
+	cursor: pointer;
+}
+#num-st{
+	width:200px;
+	font-size:16px;
+	cursor: pointer;
+}
+#num-st1{
+	width:200px;
+	font-size:16px;
+	display:none;
+	cursor: pointer;
+}
+#pw2{
+	margin-top:-10px;
+}
+#join{
+	margin-top:-10px;
+	border : 1px solid #182434;
+}
+#join.on{
+    background-color: #182434;
+    color: white;
+    cursor: pointer;
+}

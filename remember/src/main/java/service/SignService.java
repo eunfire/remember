@@ -1,5 +1,7 @@
 package service;
 
+import java.util.Map;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.UserDTO;
@@ -23,9 +25,10 @@ public interface SignService {
     int dupliFindEmailcheck(String user_id, String email);
     
     void Findpwupdate(UserDTO userDTO);
-	UserDTO MyInfo(String user_id);
+	UserDTO MyInfo(String id);
 	int updatemember(UserDTO UserDTO);
 	int deletemember(String user_id);
+	
 
 }
     

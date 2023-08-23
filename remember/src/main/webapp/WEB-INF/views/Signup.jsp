@@ -4,16 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/Signup.css" />
 <title>기억하길</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <form method="post" class="member-join" action="/signup">
+<div class="logo_container">
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <image x="0" y="0" width="1" height="1" xlink:href="image/logo.png" preserveAspectRatio="xMidYMid meet" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#pattern0)" />
+    </svg>
+</div>
  <h1 class="h1">회원가입</h1>
         <input
             type="text"
             id="id"
-            name="user_id"
+            name="id"
             alt="ID입력"
             placeholder="ID(영문,숫자 4~12자)"
             oninput="checkeID()"
@@ -25,7 +36,7 @@
             id="name"
             name="name"
             alt="이름입력"
-            placeholder="성함(ex:홍길동 혹은 josh)"
+            placeholder="성함(ex:홍길동)"
             required
           />
         <input
