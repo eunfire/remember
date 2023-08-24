@@ -22,6 +22,8 @@
 <br>
 
 [배포 서버](http://49.50.175.53/)    
+아이디: kkang / 비밀번호: 1234    
+    
 [REPOSITORIE](https://github.com/eunfire/remember)
 
 </div>
